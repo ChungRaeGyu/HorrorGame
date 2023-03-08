@@ -9,11 +9,11 @@ using UnityEngine.SceneManagement;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public InputField NickNameInput;
-    public InputField RoomInput;    
+    public InputField RoomInput;            
     private void Awake()
     {
-        PhotonNetwork.SendRate = 60; //���� ������ ���̴�.
-        PhotonNetwork.SerializationRate = 30; //����ȭ ��
+        PhotonNetwork.SendRate = 60; //Amount of data transmission(전송) and recived to and from the photon network
+        PhotonNetwork.SerializationRate = 30; //
     }
     // Start is called before the first frame update
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
@@ -47,6 +47,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         print("Failed Joined Room");
+    }
+    public void StartGame()
+    {
+     SceneManager.LoadScene("Main");
+     print(PhotonNetwork.LocalPlayer.ActorNumber+"내가 확인할 것");
     }
     void Start()
     {
